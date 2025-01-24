@@ -16,7 +16,7 @@ java -jar target/rcr-service-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 ## Dockerfile
 
-Dockerfile maps local port `8080` to `80`.
+Dockerfile maps local port `80` to `80` outside container.
 You can build using the Dockerfile like below.
 
 ```
