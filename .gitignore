@@ -1,0 +1,9 @@
+# Default ignored folders
+
+/.idea/
+/target/
+
+
+# Default ignored files
+
+*.iml
