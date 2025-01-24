@@ -59,5 +59,32 @@ curl --request GET 'localhost:80/rcrs/BACK'
 ```
 
 
+## Docker-compose
+
+Included also docker-compose.yaml.
+You can also run the app using below commands.
+
+```
+cd rcr-service
+docker-compose up -d
+
+# Test the app
+curl --request POST 'localhost:80/commands' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "commands": ["LEFT", "GRAB", "LEFT", "BACK", "LEFT", "BACK", "LEFT"]
+}'
+
+curl --request GET 'localhost:80/rcrs/LEFT'
+# should return {"rcr":"1"}
+
+curl --request GET 'localhost:80/rcrs/GRAB'
+# should return {"rcr":"00"}
+
+curl --request GET 'localhost:80/rcrs/BACK'
+# should return {"rcr":"01"}
+```
+
+
 
 
