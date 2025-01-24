@@ -1,14 +1,12 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-alpine
+# Download maven for Jdk17
+FROM maven:3.6.3-openjdk-17-slim AS build
 
-# Set the working directory in the container
-WORKDIR /app
+# Copy code and pom
+COPY src /home/app/src
+COPY pom.xml /home/app
 
-# Copy the application JAR file into the container at /app
-COPY target/rcr-service-1.0-SNAPSHOT-jar-with-dependencies.jar /app/rcr-service.jar
-
-# Make port 80 available to the world outside this container
+# Expose port 80
 EXPOSE 80
 
-# Run the application
-ENTRYPOINT ["java", "-jar", "rcr-service.jar"]
+# Run
+RUN mvn -f /home/app/pom.xml spring-boot:run
